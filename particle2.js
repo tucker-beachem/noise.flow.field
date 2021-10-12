@@ -1,4 +1,4 @@
-function Particle() {
+function Particle2() {
     this.pos = createVector(random(width), random(height));
     this.vel = createVector(0,0);
     this.acc = createVector(0,0);
@@ -12,8 +12,8 @@ function Particle() {
     }
 
     this.follow = function(vectors) {
-        let x = floor(this.pos.x / scl);
-        let y = floor(this.pos.y / scl);
+        let x = floor(this.pos.y / scl);
+        let y = floor(this.pos.x / scl);
         let index = x + y * cols;
         let force = vectors[index];
         this.applyForce(force);
@@ -26,21 +26,19 @@ function Particle() {
     this.show = function() {
 
         if (this.pos.y > width/2 && this.pos.x < width/2 || this.pos.y < width/2 && this.pos.x > width/2) {
-            r = 0;
-            g = 220;
-            b = 50;
+            r = 50;
+            g = 250;
+            b = 225;
         } else {
-            r = 0;
-            g = 220;
-            b = 50;
+            r = 50;
+            g = 250;
+            b = 225;
         }
-        noFill();
+
+ 
         stroke(r, g, b, 2);
         strokeWeight(4);
-        beginShape();
-
         point(this.pos.x, this.pos.y);
-        endShape();
 
 }
 

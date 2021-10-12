@@ -3,12 +3,13 @@ let scl = 20;
 let cols, rows;
 
 zoff = 0;
-
+let particles2 = []
 let particles = [];
 let flowfield = [];
 
 function setup() {
     createCanvas(400, 400);
+    background (0);
     cols = floor(width / scl);
     rows = floor(height / scl);
 
@@ -17,6 +18,9 @@ function setup() {
     for (let i = 0; i < 250; i++) {
     particles [i] = new Particle();
     }
+    for (let i = 0; i < 250; i++) {
+        particles2 [i] = new Particle2();
+        }
 }
 
 function draw() {
@@ -33,7 +37,7 @@ function draw() {
             v.setMag(10);
             flowfield[indx] = v;
             xoff += inc;
-            stroke(0, 100);
+            stroke(1, 100);
             strokeWeight(1);
             push();
 
@@ -44,7 +48,7 @@ function draw() {
             // rect(x *scl, y * scl, scl, scl);
     }
         yoff += inc;
-        zoff += .0003;
+        zoff += .0001;
     }
 
     for (let i = 0; i < particles.length; i++) {
@@ -53,4 +57,13 @@ function draw() {
     particles[i].show();
     particles[i].edges ();
     }
-}    
+
+    for (let i = 0; i < particles2.length; i++) {
+        particles2[i].follow(flowfield);
+        particles2[i].update();
+        particles2[i].show();
+        particles2[i].edges ();
+        }
+}   
+
+
